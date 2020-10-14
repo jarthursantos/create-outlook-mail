@@ -1,11 +1,20 @@
 {
   "name": "bridge",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "author": "Arthur Santos <silva.arthur@academico.ifpb.edu.br>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jarthursantos/create-outlook-mail.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
-    "postbuild": "copyfiles ../console/**/*.exe ../console/**/*.dll dist -f",
+    "postbuild": "copyfiles ../console/bin/Release/*.exe ../console/bin/Release/*.dll dist -f",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

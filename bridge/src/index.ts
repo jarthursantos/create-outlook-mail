@@ -4,20 +4,8 @@ import path from 'path'
 import { IEmailOptions } from './types'
 import { execAsync, CONSOLE_EXE_PATH, fixPath } from './utils'
 
-export async function createMail(options: IEmailOptions, modal: boolean = false) {
-  const { to, body, bodyType, attachments } = options
-
-  if (!to || to.length === 0) {
-    throw Error('to is a required field')
-  }
-
-  if (!body || body.length === 0) {
-    throw Error('body is a required field')
-  }
-
-  if (!bodyType) {
-    options.bodyType = 'text'
-  }
+export async function createMail(options: IEmailOptions = {}, modal: boolean = false) {
+  const { attachments } = options
 
   if (attachments) {
     attachments.forEach(attachment => {
@@ -35,7 +23,17 @@ export async function createMail(options: IEmailOptions, modal: boolean = false)
 
   const filePath = fixPath(path.resolve(__dirname, 'mail.json'))
 
-  fs.writeFileSync(filePath, JSON.stringify(options, null, 2))
+  const mailConfig = {
+    To: options.to || '',
+    Subject: options.subject || '',
+    CC: options.cc || '',
+    BCC: options.bcc || '',
+    Body: options.body || '',
+    BodyType: options.bodyType || 'text',
+    Attachments: options.attachments || []
+  }
+
+  fs.writeFileSync(filePath, JSON.stringify(mailConfig, null, 2))
 
   await execAsync(CONSOLE_EXE_PATH, args)
 

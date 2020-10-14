@@ -21,7 +21,7 @@ export const fixPath = (path: string) => {
   return isAsar() ? path.replace("app.asar", "app.asar.unpacked") : path;
 };
 
-export const CONSOLE_EXE_PATH = fixPath(path.resolve(__dirname, 'ConsoleApp.exe'))
+export const CONSOLE_EXE_PATH = fixPath(path.resolve(__dirname, 'console.exe'))
 
 export const execAsync = (file: string, args: string[]): Promise<void> => {
   return new Promise((resolve, reject) => {
