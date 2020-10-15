@@ -4,7 +4,7 @@ Create Outlook new mail dialog with form completation
 
 ## Screenshot
 
-![Mail Dialog](../.github/screenshot.png)
+![Mail Dialog](https://github.com/jarthursantos/create-outlook-mail/blob/main/.github/screenshot.png)
 
 ## Example
 
